@@ -1,0 +1,31 @@
+<h2 mat-dialog-title>Weather Forecast</h2>
+<mat-dialog-content class="mat-typography">
+
+  <table style="width:100%">
+    <tr>
+        <td><b>Date</b></td>
+       <td *ngFor="let time of data.daily.time"> {{ reverseString(time) }}</td>
+      </tr>
+    <tr >
+        <td><b>Precipitation</b></td>
+        <td *ngFor="let prec of data.daily.precipitation_sum"> {{ prec }}{{ data.daily_units.precipitation_sum }}</td>
+    </tr>
+    <tr >
+        <td><b>Rain</b></td>
+        <td *ngFor="let rain of data.daily.rain_sum"> {{ rain }}{{ data.daily_units.rain_sum }}</td>
+    </tr>
+    <tr >
+        <td><b>Temperature</b></td>
+        <td *ngFor="let temp of data.daily.temperature_2m_max">{{ temp }}{{ data.daily_units.temperature_2m_max }}</td>
+    </tr>
+    <tr >
+        <td><b>Wind Speed</b></td>
+        <td  *ngFor="let wind of data.daily.windspeed_10m_max"> {{ wind }}{{ data.daily_units.windspeed_10m_max }}</td>
+    </tr>
+
+</table>  
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

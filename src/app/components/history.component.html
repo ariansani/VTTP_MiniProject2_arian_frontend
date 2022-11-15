@@ -1,0 +1,34 @@
+<div *ngIf="history;else elseBlock">
+    <table mat-table [dataSource]="history" class="mat-elevation-z8">
+      
+      <ng-container matColumnDef="gymName">
+        <th mat-header-cell *matHeaderCellDef> Gym </th>
+        <td mat-cell *matCellDef="let element"> {{element.gymName}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="dateUsed">
+        <th mat-header-cell *matHeaderCellDef> Date Used </th>
+        <td mat-cell *matCellDef="let element"> {{element.dateUsed}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="passesUsed">
+        <th mat-header-cell *matHeaderCellDef> Passes Used </th>
+        <td mat-cell *matCellDef="let element"> {{element.passesUsed}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="packageUUID">
+        <th mat-header-cell *matHeaderCellDef> packageUUID </th>
+        <td mat-cell *matCellDef="let element"> {{element.packageUUID}} </td>
+      </ng-container>
+    
+
+      
+    
+    
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    </div>
+    <ng-template #elseBlock>No History.</ng-template>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Angular14GoogleMap</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <script
+      async
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFaXNvUSNlqQoqlNBgCgppWcSeYxb5kDM"
+    ></script>
+    <script src="sweetalert2.all.min.js"></script>
+  </head>
+  <body>
+    <div class="flex-container">
+      <div class="flex-child magenta" *ngIf="apiLoaded | async">
+        <google-map
+          height="400px"
+          max-width="700px"
+          width="700px"
+          [center]="center"
+          [zoom]="zoom"
+          (mapClick)="moveMap($event)"
+          (mapMousemove)="move($event)"
+        >
+          <map-marker
+            *ngFor="let markerPosition of markerPositions"
+            [position]="markerPosition"
+            [options]="markerOptions"
+            [title]="title"
+            [label]="label"
+          ></map-marker
+        ></google-map>
+      </div>
+      <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+        <mat-card class="example-card flex-child green">
+          <mat-card-subtitle>Buying Entry Pass for</mat-card-subtitle>
+          <mat-card-title>{{ gym.name }}</mat-card-title>
+          <mat-card-content>
+
+          <br/>
+            <label for="expiryDate">Entry Passes </label>
+            <mat-form-field>
+              <mat-label>Entry Passes</mat-label>
+              <input  type="number"
+              id="entryPasses"
+              formControlName="entryPasses"
+              placeholder="How many passes?"
+              matInput>
+              </mat-form-field>
+          <br/>
+           <label for="expiryDate">Expiry Date  </label>
+
+           <mat-form-field>
+            <mat-label>DD-MM-YYYY</mat-label>
+            <input type="text"
+            id="expiryDate"
+            formControlName="expiryDate"
+            placeholder="DD-MM-YYYY"
+            matInput>
+            </mat-form-field>
+         <br/>
+           
+          </mat-card-content>
+          <mat-divider inset style="margin-top:20% !important"></mat-divider>
+          <mat-card-actions>
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled]="!addForm.valid"
+            >
+              Purchase
+            </button>
+          </mat-card-actions>
+          <mat-card-footer>
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+          </mat-card-footer>
+        </mat-card>
+      </form>
+    </div>
+
+  </body>
+</html>

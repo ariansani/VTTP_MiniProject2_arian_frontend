@@ -1,0 +1,46 @@
+<script src="sweetalert2.all.min.js"></script>
+<form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+  <mat-card class="example-card flex-child green">
+    <mat-card-subtitle>Buying Entry Pass for</mat-card-subtitle>
+    <mat-card-title>{{ package.gymName }}</mat-card-title>
+    <mat-card-content>
+
+    <br/>
+      <label for="expiryDate">Entry Passes </label>
+      <mat-form-field>
+        <mat-label>Entry Passes</mat-label>
+        <input  type="number"
+        id="entryPasses"
+        formControlName="entryPasses"
+        placeholder="How many passes?"
+        value={{package.entryPasses}
+        matInput>
+        </mat-form-field>
+    <br/>
+     <label for="expiryDate">Expiry Date  </label>
+
+     <mat-form-field>
+      <mat-label>DD-MM-YYYY</mat-label>
+      <input type="text"
+      id="expiryDate"
+      formControlName="expiryDate"
+      placeholder="DD-MM-YYYY"
+      value={{reverseString(package.expiryDate)}}
+      matInput>
+      </mat-form-field>
+   <br/>
+     
+    </mat-card-content>
+    <mat-divider inset style="margin-top:20% !important"></mat-divider>
+    <mat-card-actions>
+      <button mat-raised-button type="submit" color="accent" [disabled]="!editForm.valid">
+        Update Package
+      </button>
+    </mat-card-actions>
+    <mat-card-footer>
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </mat-card-footer>
+  </mat-card>
+</form>
+
+
